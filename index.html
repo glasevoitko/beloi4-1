@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BelOI 2027 — 4.1 Теория чисел</title>
+<style>
+:root{--bg:#0b1020;--panel:#141c31;--panel2:#1c2741;--text:#edf2ff;--muted:#a9b7d4;--accent:#77d5ff;--green:#64d7a5;--gold:#ffd166;--line:#2d3a58}
+*{box-sizing:border-box}body{margin:0;background:linear-gradient(160deg,#0b1020,#10182a 65%,#0b1020);color:var(--text);font:16px/1.65 system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
+main{max-width:1000px;margin:auto;padding:24px}header{padding:28px;border:1px solid var(--line);border-radius:20px;background:linear-gradient(135deg,#17233d,#111a2e)}
+h1{line-height:1.2;font-size:clamp(28px,4vw,42px);margin:.2em 0}h2{margin-top:36px;color:var(--accent)}h3{color:var(--green)}p{color:#dce5f8}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:20px;margin:18px 0}.pill{display:inline-block;padding:3px 10px;border-radius:999px;background:#19374b;color:#bceaff;font-size:.85em}.status{color:var(--gold)}a{color:#89d8ff;text-decoration:none}a:hover{text-decoration:underline}.links li{margin:.5em 0}.small{color:var(--muted);font-size:.92em}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}.card{background:var(--panel2);border:1px solid var(--line);border-radius:14px;padding:16px}.formula{font-size:1.12em;color:#fff;background:#0d1425;padding:12px;border-radius:10px;overflow:auto}table{border-collapse:collapse;width:100%;margin:12px 0}td,th{border:1px solid var(--line);padding:10px;text-align:left}th{background:#1b2945}footer{margin:40px 0;color:var(--muted);border-top:1px solid var(--line);padding-top:18px}button{background:#24526a;color:white;border:0;padding:9px 14px;border-radius:9px;cursor:pointer}
+</style>
+</head>
+<body><main>
+<header>
+<span class="pill">BelOI 2027 · Syllabus</span>
+<h1>4.1 Теория чисел</h1>
+<p>Учебный маршрут: короткие блоки теории, примеры, практика и постепенное усложнение. Идём по пунктам syllabus, без спешки.</p>
+<p class="small">Статусы сохранены по документу: ✓ необходимо · q включено · pq более продвинутый уровень · p повышенный уровень.</p>
+</header>
+<section class="panel">
+<h2>Маршрут изучения</h2>
+<ol>
+<li><strong>✓ Делимость, делители. НОД и НОК</strong> — текущий стартовый блок.</li>
+<li><strong>✓ Простые числа, взаимно простые числа, простые множители, основная теорема арифметики.</strong></li>
+<li><strong>✓ Модульная арифметика:</strong> сложение, вычитание, умножение.</li>
+<li><strong>q Сумма и количество делителей числа.</strong></li>
+<li><strong>pq Деление по модулю, обратный элемент по модулю.</strong></li>
+<li><strong>pq Малая теорема Ферма, теорема Эйлера.</strong></li>
+<li><strong>p Китайская теорема об остатках.</strong></li>
+</ol>
+</section>
+<h2>Блок 1. Делимость, делители, НОД и НОК</h2>
+<div class="panel">
+<h3>1.1 Делимость</h3>
+<p>Целое число <em>a</em> делится на <em>b</em> (при <em>b ≠ 0</em>), если существует целое <em>k</em>, такое что:</p>
+<div class="formula">a = b · k</div>
+<p>Запись: <strong>b | a</strong>. Тогда b — делитель a, а a — кратное b.</p>
+<p>Например, 3 | 18, поскольку 18 = 3 · 6. Но 5 ∤ 18.</p>
+<h3>1.2 Делители</h3>
+<p>Делители положительного числа n — положительные числа, на которые n делится без остатка. Для 12 это 1, 2, 3, 4, 6, 12.</p>
+<h3>1.3 НОД</h3>
+<p><strong>НОД(a,b)</strong> — наибольшее положительное число, которое делит одновременно a и b.</p>
+<div class="formula">НОД(18, 24) = 6</div>
+<p>Алгоритм Евклида: заменяем пару (a,b) на (b, a mod b), пока остаток не станет нулём. Последний ненулевой остаток — НОД.</p>
+<div class="formula">gcd(a,b) = gcd(b, a mod b)</div>
+<h3>1.4 НОК</h3>
+<p><strong>НОК(a,b)</strong> — наименьшее положительное число, которое является кратным и a, и b.</p>
+<div class="formula">НОК(a,b) = |a · b| / НОД(a,b) (для ненулевых a и b)</div>
+<p>Например: НОД(12,18)=6; НОК(12,18)=12·18/6=36.</p>
+<h3>1.5 Что нужно уметь в программировании</h3>
+<ul>
+<li>проверять делимость через остаток %;</li>
+<li>находить НОД алгоритмом Евклида;</li>
+<li>вычислять НОК через НОД, избегая переполнения: (a / gcd(a,b)) * b;</li>
+<li>обрабатывать граничные случаи, например a=0 или b=0, если они допускаются условиями.</li>
+</ul>
+</div>
+<h2>Теория: полезные ссылки</h2>
+<div class="grid">
+<div class="card"><h3>CP-Algorithms</h3><ul class="links">
+<li><a href="https://cp-algorithms.com/algebra/euclid-algorithm.html" target="_blank" rel="noopener">Алгоритм Евклида: НОД и НОК</a></li>
+<li><a href="https://cp-algorithms.com/algebra/linear-sieve.html" target="_blank" rel="noopener">Линейное решето (для следующих тем)</a></li>
+<li><a href="https://cp-algorithms.com/algebra/" target="_blank" rel="noopener">Раздел Algebra — каталог материалов</a></li>
+</ul></div>
+<div class="card"><h3>Codeforces</h3><ul class="links">
+<li><a href="https://codeforces.com/problemset?tags=number+theory" target="_blank" rel="noopener">Задачи с тегом Number Theory</a></li>
+<li><a href="https://codeforces.com/problemset?tags=math" target="_blank" rel="noopener">Задачи с тегом Math</a></li>
+<li><a href="https://codeforces.com/blog/entry/146546" target="_blank" rel="noopener">Практические рассуждения и приёмы с GCD (blog)</a></li>
+</ul></div>
+<div class="card"><h3>LeetCode</h3><ul class="links">
+<li><a href="https://leetcode.com/problems/find-greatest-common-divisor-of-array/" target="_blank" rel="noopener">1979 — Find Greatest Common Divisor of Array (Easy)</a></li>
+<li><a href="https://leetcode.com/problems/number-of-common-factors/" target="_blank" rel="noopener">2427 — Number of Common Factors (Easy)</a></li>
+<li><a href="https://leetcode.com/problems/smallest-even-multiple/" target="_blank" rel="noopener">2413 — Smallest Even Multiple (Easy)</a></li>
+<li><a href="https://leetcode.com/problems/replace-non-coprime-numbers-in-array/" target="_blank" rel="noopener">2197 — Replace Non-Coprime Numbers in Array (Medium, позже)</a></li>
+</ul></div>
+<div class="card"><h3>ACMP</h3><ul class="links">
+<li><a href="https://acmp.ru/" target="_blank" rel="noopener">ACMP — сайт задач</a></li>
+<li><a href="https://acmp.ru/index.asp?main=tasks" target="_blank" rel="noopener">Каталог задач (искать по словам «НОД», «НОК», «делимость»)</a></li>
+</ul><p class="small">Ссылки на отдельные задачи ACMP здесь не указаны без подтверждения их актуальных номеров.</p></div>
+</div>
+<h2>Практика — начинаем постепенно</h2>
+<div class="panel">
+<h3>Уровень A · разогрев</h3>
+<ol class="links">
+<li><a href="https://leetcode.com/problems/find-greatest-common-divisor-of-array/" target="_blank" rel="noopener">LeetCode 1979 — Find Greatest Common Divisor of Array</a> <span class="small">— первая задача, реализуем НОД.</span></li>
+<li><a href="https://leetcode.com/problems/number-of-common-factors/" target="_blank" rel="noopener">LeetCode 2427 — Number of Common Factors</a> <span class="small">— делители и перебор.</span></li>
+<li><a href="https://leetcode.com/problems/smallest-even-multiple/" target="_blank" rel="noopener">LeetCode 2413 — Smallest Even Multiple</a> <span class="small">— НОК в простом частном случае.</span></li>
+</ol>
+<h3>Уровень B · закрепление</h3>
+<ol class="links">
+<li><a href="https://codeforces.com/problemset?tags=number+theory" target="_blank" rel="noopener">Codeforces — фильтр Number Theory</a> <span class="small">— выбирать задачи рейтинга примерно 800–1000, с тегами gcd/divisors.</span></li>
+<li><a href="https://leetcode.com/problems/number-of-common-factors/" target="_blank" rel="noopener">LeetCode 2427</a> <span class="small">— попытаться решить без подсказок, затем оценить сложность.</span></li>
+</ol>
+<h3>Уровень C · олимпиадная практика (после освоения)</h3>
+<ol class="links">
+<li><a href="https://codeforces.com/problemset/problem/1617/B" target="_blank" rel="noopener">Codeforces 1617B — GCD Problem</a></li>
+<li><a href="https://codeforces.com/problemset/problem/1967/B1" target="_blank" rel="noopener">Codeforces 1967B1 — Reverse Card (Easy)</a></li>
+<li><a href="https://codeforces.com/problemset/problem/992/B" target="_blank" rel="noopener">Codeforces 992B — Nastya and an Array of GCDs</a> <span class="small">— сложнее; оставляем на потом.</span></li>
+</ol>
+</div>
+<h2>План нашего занятия</h2>
+<div class="panel">
+<ol>
+<li>Коротко изучаем один понятный кусок теории.</li>
+<li>Решаем 2–3 примера вместе, вручную.</li>
+<li>Я даю одну задачу — ты пробуешь.</li>
+<li>Разбираем решение и ошибки.</li>
+<li>Пишем код (по выбранному языку) и проверяем тесты.</li>
+<li>Только после уверенного освоения переходим к следующему пункту.</li>
+</ol>
+<p><strong>Стартовая задача:</strong> LeetCode 1979. Не нужно пытаться решить весь список сразу.</p>
+</div>
+<footer>
+<p>Составлено как учебный маршрут по пункту 4.1 документа BelOI Syllabus 2027. Список задач — подборка для постепенной практики; не все задачи напрямую проверяют только одну тему.</p>
+</footer>
+</main></body></html>
